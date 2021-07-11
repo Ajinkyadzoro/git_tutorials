@@ -18,7 +18,7 @@ git commit will commit all staged changes.
 you can add your own message while commiting.
 
 1) git commit
-2) git commit -m "my message"
+2) git commit -m "message goes here"
 
 
 ========================LECTURE 29============================
