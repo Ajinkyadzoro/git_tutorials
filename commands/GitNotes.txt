@@ -1,4 +1,4 @@
-This file has all the content/commands related to git with explanations and samples.
+This file has all the content/commands related to git with explanations and sample examples.
 
 ========================LECTURE 23============================
 
