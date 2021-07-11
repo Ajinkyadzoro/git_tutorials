@@ -1,0 +1,349 @@
+========================LECTURE 23============================
+
+git init -- This will initiate a git repo inside a particular folder.
+
+
+========================LECTURE 27============================
+
+git add command is used to move files into staging area.
+
+git add <filename1> <filename2> ..
+
+
+========================LECTURE 28============================
+
+git commit will commit all staged changes.
+you can add your own message while commiting.
+
+1) git commit
+2) git commit -m "my message"
+
+
+========================LECTURE 29============================
+
+git log returns the logs of the previous commits.
+
+1) git log
+
+
+========================LECTURE 33============================
+1) git commits should be atomic
+2) atomic commits - commits should be focused on a single thing (one feature)
+
+
+========================LECTURE 34============================
+1) git commit messages should be present tense imperative style.
+2) as if you are giving orders to the codebase to change its behavior.
+
+
+========================LECTURE 36============================
+git logs
+git log --oneline (takes 1st line of each commit and takes initial hash characters)
+
+
+========================LECTURE 38============================
+amending commits
+1) used to fix commits
+2) only applicable to most recent commit or only applicable to the latest commit.
+
+Ex:
+changed files are 4.
+only 3 files are commited.
+User forgets to commit last file.
+
+git add <4th file>
+git commit --amend
+
+========================LECTURE 39============================
+
+Ignoring files in Git.
+create a .gitignore file at the root of the repo.
+Inside the file, we can write patterns to tell Git which files & folders to ignore.
+.DS_Store will ignore files named .DS_Store
+folderName/ will ignore an entire directory.
+*.log will ignore any files with the .log extension.
+
+
+========================LECTURE 43============================
+HEAD:
+1) HEAD is simply a pointer that refers to the current "location" in your repo.
+2) HEAD usually points towards the latest commit you made on master branch but we can move it around.
+3) Branch is a refrence to a commit.
+
+
+========================LECTURE 44============================
+# This command shows you all the branches which are present.
+1) git branch
+
+========================LECTURE 45============================
+# creating branches
+1) git branch <branch-name> # this only creates new branch not switches it
+
+# to switch between the branches we can use.
+# git switch branch-name will create a new branch based on the current HEAD.
+2) git switch <branch-name>
+
+========================LECTURE 46============================
+# this is a way of commiting in single go.
+1) git commit -a -m "your msg"
+
+
+========================LECTURE 47============================
+Git checkout V/S Git switch
+
+1) git checkout <branch-name>
+
+# Creating and switching to a branch in one go with switch
+2) git switch -c <branch-name>
+
+# Creating and switching to a branch in one go with checkout
+3) git checkout -b <branch-name>
+
+
+========================LECTURE 48============================
+Switching branches with Unstaged changes.
+ !! You can only switch branches after you have commited the changes or you need to stash them. !!
+
+
+========================LECTURE 49============================
+Deleting and renaming branches
+
+1) git branch -d <branch-name>
+
+2) git branch -D <branch-name> # -D = forceful delete.
+
+# rename a branch.
+!! To rename a branch you have to be present on that branch (opposite to delete)
+
+3) git branch -m <new-branch-name>
+
+
+
+========================LECTURE 53============================
+
+Merging process in GIT
+
+1) Switch or checkout the branch you want to merge the changes into (receiving branch)
+2) use git merge command to merge changes from a specific branch into the current branch.
+
+    > git switch master
+    > git merge bugfix
+
+3) If there was no work on master branch and there was changes in feature branch and when you merge feature to master then its called as fast-forward merge.
+
+
+========================LECTURE 56============================
+!! VERY IMPORTANT PART !!
+Consider a situation when you have branched off from master and now you are doing some work on a feature branch.
+Lets say you are working on a branch name bug-fix and someone is working on the master branch. you made a couple of commits on your branch and now someone also have commmited few changes onto the master branch. now in this scenario there won't be a fast forward merge but there will be a "merge commit".
+
+
+========================LECTURE 57============================
+Resolving conflicts.
+
+steps:
+1) Open files with merge conflicts.
+2) Edit the file to remove conflicts. Decide which branch's content you want to keep/remove or keep both
+3) Remove conflict markers in the document
+4) Add your changes and then make a commit.
+
+
+
+========================LECTURE 62============================
+
+git diff # this command will show the difference between current changes (Unstaged) and last commited changes.
+
+
+
+
+========================LECTURE 65============================
+
+git diff HEAD # this command will show staged and unstaged changes in working directory
+
+
+========================LECTURE 66============================
+
+git diff --staged
+
+
+========================LECTURE 67============================
+# diffing specific file
+
+git diff --staged filename.txt
+git diff HEAD filename
+
+
+========================LECTURE 68============================
+
+# diffing specific branches
+git diff master..<other-branch-name>
+git diff master <other-branch-name>
+
+
+========================LECTURE 69============================
+DIFF BETWEEN DIFF COMMITS
+
+git diff hash1..hash2
+
+git diff hash1 hash2
+
+
+========================LECTURE 73============================
+
+Stashing is very useful for uncommited changes.
+for an example if you have uncommited changes on a feature branch and you want to
+switch to master or different branch then stashing comes into picture.
+
+When you switch from feature to master when there are uncommited changes on the
+feature branch then there are 2 scenarios that might occur,
+1) Uncommited changes will come with you to the destination branch
+2) git wont let you switch your branch unless you commit changes (because there are conflicts)
+
+
+========================LECTURE 75============================
+# this command will stash the current changes (staged and unstaged)
+> git stash
+
+# this command will unstash the most recent changes (staged and unstaged)
+> git stash pop
+
+NOTE : stashing area can have more than 1 stash related data.
+
+========================LECTURE 76============================
+
+# this command will copy stashed changes from the stashing area not remove them
+# This command can be useful when you have to apply the stashed changes to multiple branches.
+> git stash apply 
+
+
+========================LECTURE 77============================
+
+Stashing multiple times.
+# You can add multiple stashes into the stack of stashes. 
+# They will all be stashed in the order you added them.
+
+# this command is used to view the stash list
+> git stash list
+
+# this command will apply a particular stashed element from stash list
+> git stash apply stash@{2}
+
+
+========================LECTURE 78============================
+
+Dropping and cleaning the stash
+> git stash drop stash@{2}
+
+To clear everything from the stash, use:
+> git stash clear
+
+
+========================LECTURE 81============================
+
+# this command will detach head and head will point to the commit and not branch.
+# also this command will checkout the old commit , basically travel back in time.
+git checkout <ref of commit>
+
+
+========================LECTURE 82============================
+
+git switch master # this is how you attach the detached head
+
+
+========================LECTURE 83============================
+git checkout HEAD~1 # goes 1 step back i.e. parent
+git checkout HEAD~2 # goes 2 step back i.e. grandparent
+
+========================LECTURE 85============================
+
+git restore command tutorial
+
+# this command will restore the file to the last commit.
+> git restore <file-name> 
+
+# this command will change current file to how it looked like 2 or 3 commits ago
+> git restore --source HEAD~2 <filename>
+
+========================LECTURE 86============================
+
+Unstaging changes with git restore.
+
+> git restore --staged <file-name>
+
+
+========================LECTURE 87============================
+
+Undoing commits with git reset.
+
+# this command will reset the repo back to a specific commit.
+# other commits are gone.
+# but working directory stays the same 
+> git reset <commit-hash> 
+
+# this command will do a hard reset and it will also remove commits.
+# hard reset will remove changes from the current working directory as well.
+> git reset --hard <commit-ref>
+
+
+========================LECTURE 88============================
+
+Reverting commits with git revert
+ git revert is very similar to git reset they both undo the changes but they accomplish it in different ways.
+ git reset actually moves branch pointer backwards.
+ git revert instead creates a brand new commit which reverses/undos the changes from a commit. because it creates
+ new commit, you will be prompted to enter a commit message.
+
+> git revert <commit-hash>
+
+if working in collaboration with other devs (use revert)
+if working alone and no one knows (use reset)
+
+revert do not alter history.
+
+
+
+========================LECTURE 143============================
+
+REBASE:
+
+ >git switch feature
+ >git rebase master
+
+ # above commands will add newly commited code from master into feature branch.
+ # by this way feature branch will stay updated with master.
+ # all the commits of master branch will stay at bottom and feature commits are rewritten on top of master with #new hashes.
+
+
+========================LECTURE 144============================
+
+GOLDEN RULE OF REBASING: WHEN NOT TO USE REBASE
+
+NEVER REBASE COMMITS THAT HAVE BEEN SHARED WITH OTHERS.
+IF YOU HAVE ALREADY PUSHED COMMITS UP TO Github DO NOT rebase them unless you are positive no one
+on the team is going to use them.
+
+
+========================LECTURE 145============================
+Rebasing conflicts:
+ step 1) solve conficts in editor
+ step 2) git add <conflicted-file-name>
+ step 3) git rebase --continue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
