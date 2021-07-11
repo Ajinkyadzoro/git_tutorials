@@ -1,3 +1,5 @@
+This file has all the content/commands related to git with explanations and samples.
+
 ========================LECTURE 23============================
 
 git init -- This will initiate a git repo inside a particular folder.
